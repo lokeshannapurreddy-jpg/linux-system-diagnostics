@@ -1,8 +1,17 @@
 import os
 import platform
+import time
 from datetime import datetime
 
 import psutil
+
+
+def format_uptime(seconds):
+    """Format elapsed seconds as days, hours, and minutes."""
+    minutes = int(seconds // 60)
+    days, minutes = divmod(minutes, 1440)
+    hours, minutes = divmod(minutes, 60)
+    return f"{days}d {hours}h {minutes}m"
 
 
 def get_system_info():
@@ -17,6 +26,7 @@ def get_system_info():
             "%Y-%m-%d %H:%M:%S %Z"
         ),
         "Current Directory": os.getcwd(),
+        "System Uptime": format_uptime(time.time() - psutil.boot_time()),
     }
 
 
