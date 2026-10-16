@@ -1,0 +1,10 @@
+Package: linux-system-diagnostics
+Version: 1.0.0
+Section: admin
+Priority: optional
+Architecture: all
+Depends: python3 (>= 3.10), python3-psutil
+Maintainer: Lokesh Annapurreddy <annapurreddylokesh@gmail.com>
+Description: Linux system diagnostics and log analysis
+ Python command-line utility for collecting system information,
+ monitoring CPU, memory and disk usage, and analyzing log files.

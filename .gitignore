@@ -3,3 +3,9 @@
 venv/
 .venv/
 .env
+
+# Generated Debian packages
+*.deb
+
+# Generated Debian packages
+*.deb

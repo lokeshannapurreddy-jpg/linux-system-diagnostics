@@ -105,3 +105,67 @@ The project has been tested in an Ubuntu environment using Python's unittest fra
 ## License
 
 No license has been specified yet.
+
+## Debian/Ubuntu package
+
+A Debian package can be built on Debian or Ubuntu systems with `dpkg-deb`
+installed.
+
+### Build
+
+From the repository root, run:
+
+    ./scripts/build-deb.sh
+
+The script refreshes the staged Python files, builds the package, and checks
+that the generated archive can be inspected. The output is:
+
+    linux-system-diagnostics_1.0.0_all.deb
+
+### Install
+
+Install the local package with:
+
+    sudo apt install ./linux-system-diagnostics_1.0.0_all.deb
+
+APT resolves the declared runtime dependencies, including `python3-psutil`.
+
+### Run
+
+Display the command-line options:
+
+    linux-system-diagnostics --help
+
+Collect current system resource usage:
+
+    linux-system-diagnostics
+
+Analyze a log file:
+
+    linux-system-diagnostics --log /path/to/application.log
+
+### Verify
+
+Inspect package metadata and file paths:
+
+    dpkg-deb --info linux-system-diagnostics_1.0.0_all.deb
+    dpkg-deb --contents linux-system-diagnostics_1.0.0_all.deb
+
+Run the unit tests from the repository root:
+
+    python3 -m unittest discover -v
+
+### Remove
+
+Remove the installed package with:
+
+    sudo apt remove linux-system-diagnostics
+
+The generated `.deb` archive is a build artifact and is excluded from Git.
+The `packaging/` directory and `scripts/build-deb.sh` are the package sources
+needed to reproduce it.
+
+This is a local Debian package prototype, not an official Ubuntu archive
+package. The build script verifies archive creation and inspectability; it
+does not replace a clean-environment installation test or distribution
+packaging review.
