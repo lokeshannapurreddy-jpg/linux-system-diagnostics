@@ -29,4 +29,10 @@ Run: python -m unittest -v test_main.py
 - README.md: Project documentation
 
 ## Platform compatibility
-Tested on Windows. Linux compatibility has not yet been verified.
+
+Verified on:
+- Ubuntu 26.04.1 LTS with Python 3.14.4
+- Windows with Python
+
+The application runs on Ubuntu Linux, and both automated tests pass
+in the Ubuntu environment.
