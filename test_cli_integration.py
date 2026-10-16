@@ -4,7 +4,6 @@ import tempfile
 import unittest
 from pathlib import Path
 
-
 PROJECT_DIR = Path(__file__).resolve().parent
 CLI_PATH = PROJECT_DIR / "cli.py"
 
@@ -13,6 +12,7 @@ class TestCLIIntegration(unittest.TestCase):
     def run_cli(self, *args):
         return subprocess.run(
             [sys.executable, str(CLI_PATH), *args],
+            check=False,
             capture_output=True,
             text=True,
             timeout=15,

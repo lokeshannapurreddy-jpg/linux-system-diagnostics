@@ -1,7 +1,6 @@
 import re
 from collections import Counter
 
-
 ERROR_PATTERN = re.compile(
     r"\b(error|failed|failure|critical|fatal|panic)\b",
     re.IGNORECASE,

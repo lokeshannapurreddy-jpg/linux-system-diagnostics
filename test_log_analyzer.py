@@ -7,13 +7,14 @@ from log_analyzer import LogAnalysisError, analyze_log, normalize
 
 class TestLogAnalyzer(unittest.TestCase):
     def write_log(self, text):
-        file = tempfile.NamedTemporaryFile(
+        with tempfile.NamedTemporaryFile(
             mode="w", delete=False, suffix=".log"
-        )
-        file.write(text)
-        file.close()
-        self.addCleanup(os.remove, file.name)
-        return file.name
+        ) as file:
+            file.write(text)
+            path = file.name
+
+        self.addCleanup(os.remove, path)
+        return path
 
     def test_counts_recurring_errors(self):
         path = self.write_log(
