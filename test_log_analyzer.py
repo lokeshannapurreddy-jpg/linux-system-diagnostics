@@ -58,5 +58,34 @@ class TestLogAnalyzer(unittest.TestCase):
         self.assertEqual(len(result["top_errors"]), 2)
 
 
+    def test_top_zero_returns_no_errors(self):
+        path = self.write_log("ERROR disk failed\n")
+
+        result = analyze_log(path, top=0)
+
+        self.assertEqual(result["error_lines"], 1)
+        self.assertEqual(result["top_errors"], [])
+
+    def test_log_without_errors(self):
+        path = self.write_log(
+            "INFO service started\n"
+            "WARNING memory usage high\n"
+        )
+
+        result = analyze_log(path)
+
+        self.assertEqual(result["total_lines"], 2)
+        self.assertEqual(result["error_lines"], 0)
+        self.assertEqual(result["top_errors"], [])
+
+    def test_negative_top_returns_no_errors(self):
+        path = self.write_log("ERROR disk failed\n")
+
+        result = analyze_log(path, top=-1)
+
+        self.assertEqual(result["error_lines"], 1)
+        self.assertEqual(result["top_errors"], [])
+
+
 if __name__ == "__main__":
     unittest.main()
