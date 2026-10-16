@@ -104,7 +104,7 @@ The project has been tested in an Ubuntu environment using Python's unittest fra
 
 ## License
 
-No license has been specified yet.
+This project is licensed under the MIT License. See the [LICENSE](LICENSE) file for details.
 
 ## Debian/Ubuntu package
 
