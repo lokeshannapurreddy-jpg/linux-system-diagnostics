@@ -35,3 +35,14 @@ jobs:
         run: |
           dpkg-deb --info linux-system-diagnostics_1.0.0_all.deb
           dpkg-deb --contents linux-system-diagnostics_1.0.0_all.deb
+
+      - name: Install Debian package
+        run: sudo apt-get install -y ./linux-system-diagnostics_1.0.0_all.deb
+
+      - name: Verify installed command
+        run: |
+          command -v linux-system-diagnostics
+          linux-system-diagnostics --help
+
+      - name: Run installed diagnostics
+        run: linux-system-diagnostics
